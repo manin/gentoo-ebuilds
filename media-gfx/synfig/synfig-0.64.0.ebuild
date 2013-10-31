@@ -18,11 +18,11 @@ DEPEND=">=dev-libs/libsigc++-2.0.0
 	>=dev-cpp/libxmlpp-2.6.1
 	media-libs/libpng
 	>=dev-cpp/ETL-0.04.16
-	ffmpeg? ( media-video/ffmpeg )
+	ffmpeg? ( >=media-video/ffmpeg-1.0.7 )
 	openexr? ( media-libs/openexr )
 	truetype? ( >=media-libs/freetype-2.1.9 )
 	fontconfig? ( media-libs/fontconfig )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	tiff? ( media-libs/tiff )"
 
 RDEPEND="${DEPEND}
