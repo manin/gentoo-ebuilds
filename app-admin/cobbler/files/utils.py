@@ -1257,6 +1257,10 @@ def check_openfiles(src):
 
 def copyfile_pattern(pattern,dst,require_match=True,symlink_ok=False,cache=True,api=None,logger=None):
     files = glob.glob(pattern)
+    for f in files:
+	if os.path.isdir(f):
+		files.remove(f)
+		files.extend(glob.glob(f+"/*"))
     if require_match and not len(files) > 0:
         raise CX(_("Could not find files matching %s") % pattern)
     for file in files:
