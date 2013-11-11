@@ -29,8 +29,8 @@ RDEPEND=">=www-servers/apache-2.2.24
 	www-apache/mod_wsgi
 	dev-python/pykickstart
 	app-arch/createrepo
-	sys-apps/debmirror
 	net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
+#	sys-apps/debmirror
 DEPEND="${RDEPEND}"
 
 need_apache2 rewrite proxy_http proxy
