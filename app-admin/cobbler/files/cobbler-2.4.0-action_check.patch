@@ -1,6 +1,6 @@
 --- cobbler/action_check.py	2013-11-11 13:56:35.926916887 +0100
-+++ cobbler/action_check.py	2013-11-11 18:55:03.801773681 +0100
-@@ -123,7 +123,7 @@
++++ cobbler/action_check.py	2013-11-11 19:03:23.237715702 +0100
+@@ -123,10 +123,10 @@
             if rc != 0:
                 status.append(_("service %s is not running%s") % (which,notes))
                 return False
@@ -8,7 +8,11 @@
 +       elif self.checked_dist in ["debian", "ubuntu"] or self.checked_dist.find("gentoo") > -1:
             # we still use /etc/init.d
             if os.path.exists("/etc/init.d/%s" % which):
-                rc = utils.subprocess_call(self.logger,"/etc/init.d/%s status /dev/null 2>/dev/null" % which, shell=True)
+-               rc = utils.subprocess_call(self.logger,"/etc/init.d/%s status /dev/null 2>/dev/null" % which, shell=True)
++               rc = utils.subprocess_call(self.logger,"/etc/init.d/%s status > /dev/null 2>/dev/null" % which, shell=True)
+            if rc != 0:
+                status.append(_("service %s is not running%s") % (which,notes))
+                return False
 @@ -408,14 +408,19 @@
         if self.checked_dist in ["debian", "ubuntu"]:
            return
