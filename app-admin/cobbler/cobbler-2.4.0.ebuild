@@ -45,12 +45,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-setup.patch"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|${MY_SERVERCONFIGDIR}/|g" \
 			-e "s|__GENTOO_WEB_ROOT__|${MY_HTDOCSDIR}/|g" \
-			-e "/webcontent/d" \
+#			-e "/webcontent/d" \
 			-e "/cobbler_web.conf/d" \
 			-e "/initpath/d" \
 			"${S}/setup.py"
-#	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
-#			"${S}/config/cobbler.conf"
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
@@ -63,6 +61,7 @@ src_install() {
 	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
+	fowners -R apache /usr/share/cobbler/web/ /var/lib/cobbler/webui_sessions/ 
 }
 
 pkg_postinst() {
