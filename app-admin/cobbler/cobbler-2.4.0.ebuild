@@ -49,10 +49,11 @@ src_prepare() {
 			-e "/cobbler_web.conf/d" \
 			-e "/initpath/d" \
 			"${S}/setup.py"
-	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
-			"${S}/config/cobbler.conf"
+#	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
+#			"${S}/config/cobbler.conf"
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
+	find "${S}" --name "*.py" -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
 }
 
 src_install() {
