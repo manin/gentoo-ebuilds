@@ -1,4 +1,8 @@
 gentoo-ebuilds
 ==============
 
-Gentoo ebuilds
+##synfig
+
+##synfig-studio
+
+##cobbler
