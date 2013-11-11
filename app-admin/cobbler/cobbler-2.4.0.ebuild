@@ -52,11 +52,12 @@ src_prepare() {
 	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
 			"${S}/config/cobbler.conf"
 	epatch "${FILESDIR}/${P}-action_check.patch"
+	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
 }
 
 src_install() {
 	webapp_src_preinst
-	distutils-r1_src_install
+	distutils-r1_python_install
 	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
@@ -67,6 +68,6 @@ pkg_postinst() {
 	elog "Just add \"-D WSGI\" to /etc/conf.d/apache2"
 	elog ""
 	elog "Run \"cobbler check\""
-	distutils-r1_pkg_postinst
+#	distutils-r1_pkg_postinst
 	webapp_pkg_postinst
 }
