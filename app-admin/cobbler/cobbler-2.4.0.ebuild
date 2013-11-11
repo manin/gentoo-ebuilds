@@ -29,6 +29,7 @@ RDEPEND=">=www-servers/apache-2.2.24
 	www-apache/mod_wsgi
 	dev-python/pykickstart
 	app-arch/createrepo
+	sys-apps/debmirror
 	net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 DEPEND="${RDEPEND}"
 
@@ -50,6 +51,7 @@ src_prepare() {
 			"${S}/setup.py"
 	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
 			"${S}/config/cobbler.conf"
+	epatch "${FILESDIR}/${P}-action_check.patch"
 }
 
 src_install() {

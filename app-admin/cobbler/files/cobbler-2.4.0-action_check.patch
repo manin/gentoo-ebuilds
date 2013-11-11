@@ -1,0 +1,26 @@
+--- cobbler/action_check.py	2013-11-11 13:56:35.926916887 +0100
++++ cobbler/action_check.py	2013-11-11 14:06:55.601530192 +0100
+@@ -408,14 +408,19 @@
+        if self.checked_dist in ["debian", "ubuntu"]:
+           return
+ 
+-       if os.path.exists("/etc/xinetd.d/rsync"):
+-          f = open("/etc/xinetd.d/rsync")
++       rsync_conf_path = "/etc/xinetd.d/rsync"
++
++       if self.checked_dist.find("gentoo") > -1:
++          rsync_conf_path = "/etc/xinetd.d/rsyncd"
++
++       if os.path.exists("rsync_conf_path"):
++          f = open("rsync_conf_path")
+           re_disable = re.compile(r'disable.*=.*yes')
+           for line in f.readlines():
+              if re_disable.search(line) and not line.strip().startswith("#"):
+-                 status.append(_("change 'disable' to 'no' in %(file)s") % { "file" : "/etc/xinetd.d/rsync" })
++                 status.append(_("change 'disable' to 'no' in %(file)s") % { "file" : "rsync_conf_path" })
+        else:
+-          status.append(_("file %(file)s does not exist") % { "file" : "/etc/xinetd.d/rsync" })
++          status.append(_("file %(file)s does not exist") % { "file" : "rsync_conf_path" })
+ 
+ 
+    def check_dhcpd_conf(self,status):
