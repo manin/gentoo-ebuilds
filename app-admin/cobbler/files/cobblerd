@@ -7,21 +7,21 @@
 # processname: /usr/bin/cobblerd
 
 depend() {
-	use logger
+	use logger apache2
         need net
 }
 
 
 start() {
-CONFIG_ARGS=" "
+	CONFIG_ARGS="-F"
 	ebegin "Starting cobblerd"
-        start-stop-daemon --start --quiet --pidfile /var/run/cobblerd.pid \
-                --name /usr//bin/cobblerd -- ${CONFIG_ARGS}
+        start-stop-daemon --start --quiet --pidfile /run/cobblerd.pid -b -m \
+		/usr/bin/cobblerd -- ${CONFIG_ARGS}
         eend $?
 }
 
 stop() {
 	ebegin "Stopping cobblerd"
-        start-stop-daemon --stop --quiet --pidfile /var/run/cobbler.pid
+        start-stop-daemon --stop --quiet --pidfile /run/cobblerd.pid  
         eend $?
 }
