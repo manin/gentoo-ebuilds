@@ -41,7 +41,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	sed -i -e "/webroot/ s/cobbler//" "${S}"/setup.py
+	sed -i -e "/\%\s*webroot/ s/cobbler//" "${S}"/setup.py
 	epatch "${FILESDIR}/${P}-setup.patch"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|${MY_SERVERCONFIGDIR}/|g" \
 			-e "s|__GENTOO_WEB_ROOT__|${MY_HTDOCSDIR}/|g" \
@@ -51,8 +51,8 @@ src_prepare() {
 			#-e "/webcontent/d" \
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
-	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
-	find "${S}/config" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
+	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
+	find "${S}/config" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
 }
 
 src_install() {
