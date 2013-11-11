@@ -4,7 +4,6 @@
 
 EAPI="4"
 
-SLOT=0
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
@@ -28,6 +27,7 @@ RDEPEND=">=www-servers/apache-2.2.24
     dev-python/urlgrabber
     sys-boot/syslinux
 	www-apache/mod_wsgi
+	dev-python/pykickstart
     net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 DEPEND="${RDEPEND}"
 
@@ -62,6 +62,8 @@ src_install() {
 pkg_postinst() {
 	elog "you have to enable WSGI mod on Apache"
 	elog "Just add \"-D WSGI\" to /etc/conf.d/apache2" 
+	elog ""
+	elog "Run \"cobbler check\""
 	distutils_pkg_postinst
 	webapp_pkg_postinst
 }
