@@ -11,16 +11,16 @@
 +       if self.checked_dist.find("gentoo") > -1:
 +          rsync_conf_path = "/etc/xinetd.d/rsyncd"
 +
-+       if os.path.exists("rsync_conf_path"):
-+          f = open("rsync_conf_path")
++       if os.path.exists(rsync_conf_path):
++          f = open(rsync_conf_path)
            re_disable = re.compile(r'disable.*=.*yes')
            for line in f.readlines():
               if re_disable.search(line) and not line.strip().startswith("#"):
 -                 status.append(_("change 'disable' to 'no' in %(file)s") % { "file" : "/etc/xinetd.d/rsync" })
-+                 status.append(_("change 'disable' to 'no' in %(file)s") % { "file" : "rsync_conf_path" })
++                 status.append(_("change 'disable' to 'no' in %(file)s") % { "file" : rsync_conf_path })
         else:
 -          status.append(_("file %(file)s does not exist") % { "file" : "/etc/xinetd.d/rsync" })
-+          status.append(_("file %(file)s does not exist") % { "file" : "rsync_conf_path" })
++          status.append(_("file %(file)s does not exist") % { "file" : rsync_conf_path })
  
  
     def check_dhcpd_conf(self,status):
