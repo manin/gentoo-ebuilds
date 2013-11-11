@@ -54,6 +54,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
+	find "${S}/config" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
 }
 
 src_install() {
