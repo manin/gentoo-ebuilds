@@ -1,0 +1,133 @@
+*** setup.py	Sun Oct 27 14:25:45 2013
+--- setup.py	Sun Oct 27 14:35:02 2013
+***************
+*** 161,171 ****
+  
+      # Trailing slashes on these vars is to allow for easy
+      # later configuration of relative paths if desired.
+!     docpath     = "/usr/share/man/man1"
+!     etcpath     = "/etc/cobbler/"
+!     initpath    = "/etc/init.d/"
+!     libpath     = "/var/lib/cobbler/"
+!     logpath     = "/var/log/"
+  
+      if os.path.exists("/etc/SuSE-release"):
+          webconfig  = "/etc/apache2/conf.d"
+--- 161,172 ----
+  
+      # Trailing slashes on these vars is to allow for easy
+      # later configuration of relative paths if desired.
+!     docpath     = "usr/share/man/man1"
+!     etcpath     = "etc/cobbler/"
+!     initpath    = "etc/init.d/"
+!     libpath     = "var/lib/cobbler/"
+!     logpath     = "var/log/"
+!     datapath	= "usr/share/cobbler"
+  
+      if os.path.exists("/etc/SuSE-release"):
+          webconfig  = "/etc/apache2/conf.d"
+***************
+*** 173,178 ****
+--- 174,182 ----
+      elif os.path.exists("/etc/debian_version"):
+          webconfig  = "/etc/apache2/conf.d"
+          webroot     = "/srv/www/"
++     elif os.path.exists("/etc/gentoo-release"):
++         webconfig  = "etc/apache2/modules.d/"
++         webroot     = "var/www/localhost/htdocs/"
+      else:
+          webconfig  = "/etc/httpd/conf.d"
+          webroot     = "/var/www/"
+***************
+*** 212,233 ****
+          ],
+          data_files = proc_data_files([
+              # tftpd, hide in /usr/sbin
+!             ("/usr/sbin", ["bin/tftpd.py"]),
+  
+              ("%s" % webconfig,              ["config/cobbler.conf"]),
+              ("%s" % webconfig,              ["config/cobbler_web.conf"]),
+              ("%s" % initpath,               ["config/cobblerd"]),
+              ("%s" % docpath,                ["docs/*.gz"]),
+!             ("installer_templates",         ["installer_templates/*"]),
+              ("%skickstarts" % libpath,      ["kickstarts/*"]),
+              ("%ssnippets" % libpath,        ["snippets/*"]),
+              ("%sscripts" % libpath,         ["scripts/*"]),
+              ("%s" % libpath,                ["config/distro_signatures.json"]),
+!             ("web",                         ["web/*.*"]),
+              ("%s" % webcontent,             ["web/content/*.*"]),
+!             ("web/cobbler_web",             ["web/cobbler_web/*.*"]),
+!             ("web/cobbler_web/templatetags",["web/cobbler_web/templatetags/*"]),
+!             ("web/cobbler_web/templates",   ["web/cobbler_web/templates/*"]),
+              ("%swebui_sessions" % libpath,  []),
+              ("%sloaders" % libpath,         []),
+              ("%scobbler/aux" % webroot,     ["aux/*"]),
+--- 216,237 ----
+          ],
+          data_files = proc_data_files([
+              # tftpd, hide in /usr/sbin
+!             ("usr/sbin", ["bin/tftpd.py"]),
+  
+              ("%s" % webconfig,              ["config/cobbler.conf"]),
+              ("%s" % webconfig,              ["config/cobbler_web.conf"]),
+              ("%s" % initpath,               ["config/cobblerd"]),
+              ("%s" % docpath,                ["docs/*.gz"]),
+!             ("%s/installer_templates" % datapath,        ["installer_templates/*"]),
+              ("%skickstarts" % libpath,      ["kickstarts/*"]),
+              ("%ssnippets" % libpath,        ["snippets/*"]),
+              ("%sscripts" % libpath,         ["scripts/*"]),
+              ("%s" % libpath,                ["config/distro_signatures.json"]),
+!             ("%s/web" % datapath,           ["web/*.*"]),
+              ("%s" % webcontent,             ["web/content/*.*"]),
+!             ("%s/web/cobbler_web" % datapath,            ["web/cobbler_web/*.*"]),
+!             ("%s/web/cobbler_web/templatetags" % datapath, ["web/cobbler_web/templatetags/*"]),
+!             ("%s/web/cobbler_web/templates" % datapath,  ["web/cobbler_web/templates/*"]),
+              ("%swebui_sessions" % libpath,  []),
+              ("%sloaders" % libpath,         []),
+              ("%scobbler/aux" % webroot,     ["aux/*"]),
+***************
+*** 289,302 ****
+              ("%sconfig/files.d" % libpath,       []),
+              
+              #Build empty directories to hold koan localconfig
+!             ("/var/lib/koan/config",             []),
+  
+              # logfiles
+              ("%scobbler/kicklog" % logpath,             []),
+              ("%scobbler/syslog" % logpath,              []),
+              ("%shttpd/cobbler" % logpath,               []),
+              ("%scobbler/anamon" % logpath,              []),
+!             ("%skoan" % logpath,                        []),
+              ("%scobbler/tasks" % logpath,               []),
+  
+              # spoolpaths
+--- 293,306 ----
+              ("%sconfig/files.d" % libpath,       []),
+              
+              #Build empty directories to hold koan localconfig
+!             ("var/lib/koan/config",             []),
+  
+              # logfiles
+              ("%scobbler/kicklog" % logpath,             []),
+              ("%scobbler/syslog" % logpath,              []),
+              ("%shttpd/cobbler" % logpath,               []),
+              ("%scobbler/anamon" % logpath,              []),
+!             ("%s/koan" % logpath,                        []),
+              ("%scobbler/tasks" % logpath,               []),
+  
+              # spoolpaths
+***************
+*** 317,322 ****
+              ("%scobbler/svc/" % webroot,     ["bin/services.py"]),
+  
+              # zone-specific templates directory
+!             ("%szone_templates" % etcpath,                []),
+          ]),
+      )
+--- 321,326 ----
+              ("%scobbler/svc/" % webroot,     ["bin/services.py"]),
+  
+              # zone-specific templates directory
+!             ("%s/zone_templates" % etcpath,                []),
+          ]),
+      )

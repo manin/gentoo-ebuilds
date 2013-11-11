@@ -1,0 +1,27 @@
+#!/sbin/runscript
+#
+# cobblerd    Cobbler helper daemon
+###################################
+
+#
+# processname: /usr/bin/cobblerd
+
+depend() {
+	use logger
+        need net
+}
+
+
+start() {
+CONFIG_ARGS=" "
+	ebegin "Starting cobblerd"
+        start-stop-daemon --start --quiet --pidfile /var/run/cobblerd.pid \
+                --name /usr//bin/cobblerd -- ${CONFIG_ARGS}
+        eend $?
+}
+
+stop() {
+	ebegin "Stopping cobblerd"
+        start-stop-daemon --stop --quiet --pidfile /var/run/cobbler.pid
+        eend $?
+}

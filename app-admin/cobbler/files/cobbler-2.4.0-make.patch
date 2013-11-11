@@ -1,0 +1,40 @@
+*** Makefile	Sun Oct 27 14:42:31 2013
+--- Makefile	Sun Oct 27 14:39:30 2013
+***************
+*** 2,8 ****
+  
+  TOP_DIR:=$(shell pwd)
+  
+! prefix=devinstall
+  statepath=/tmp/cobbler_settings/$(prefix)
+  
+  all: clean build
+--- 2,8 ----
+  
+  TOP_DIR:=$(shell pwd)
+  
+! prefix=${DESTDIR}
+  statepath=/tmp/cobbler_settings/$(prefix)
+  
+  all: clean build
+***************
+*** 40,48 ****
+  # otherwise Debian / Ubuntu ('www-data' user)
+  install: build
+  	if [ -n "`getent passwd apache`" ] ; then \
+! 		python setup.py install -f; \
+! 		chown -R apache /usr/share/cobbler/web; \
+! 		chown -R apache /var/lib/cobbler/webui_sessions; \
+  	else \
+  		python setup.py install -f --install-layout=deb; \
+  		chown -R www-data /usr/share/cobbler/web; \
+--- 40,48 ----
+  # otherwise Debian / Ubuntu ('www-data' user)
+  install: build
+  	if [ -n "`getent passwd apache`" ] ; then \
+! 		python setup.py install -f --prefix=${DESTDIR} --install-lib=${LIBDIR};\
+! 		chown -R apache ${DESTDIR}/usr/share/cobbler/web; \
+! 		chown -R apache ${DESTDIR}/var/lib/cobbler/webui_sessions; \
+  	else \
+  		python setup.py install -f --install-layout=deb; \
+  		chown -R www-data /usr/share/cobbler/web; \

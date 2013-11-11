@@ -1,0 +1,14 @@
+*** setup.py	Sun Oct 27 14:25:45 2013
+--- setup.py	Sun Oct 27 14:35:02 2013
+***************
+*** 173,178 ****
+--- 174,182 ----
+      elif os.path.exists("/etc/debian_version"):
+          webconfig  = "/etc/apache2/conf.d"
+          webroot     = "/srv/www/"
++     elif os.path.exists("/etc/gentoo-release"):
++         webconfig  = "__GENTOO_WEB_CONF__"
++         webroot    = "__GENTOO_WEB_ROOT__"
+      else:
+          webconfig  = "/etc/httpd/conf.d"
+          webroot     = "/var/www/"
