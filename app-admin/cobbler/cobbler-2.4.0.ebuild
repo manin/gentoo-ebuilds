@@ -62,6 +62,7 @@ src_install() {
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
 	fowners -R apache /usr/share/cobbler/web/ /var/lib/cobbler/webui_sessions/ 
+	mv ${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/cobbler_webui_content ${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/
 }
 
 pkg_postinst() {
