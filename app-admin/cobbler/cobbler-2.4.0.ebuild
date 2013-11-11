@@ -45,10 +45,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-setup.patch"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|${MY_SERVERCONFIGDIR}/|g" \
 			-e "s|__GENTOO_WEB_ROOT__|${MY_HTDOCSDIR}/|g" \
-#			-e "/webcontent/d" \
 			-e "/cobbler_web.conf/d" \
 			-e "/initpath/d" \
 			"${S}/setup.py"
+			#-e "/webcontent/d" \
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" '{}' \;
