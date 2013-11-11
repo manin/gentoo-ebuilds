@@ -4,7 +4,6 @@
 
 EAPI="4"
 
-#PYTHON_DEPEND="*:2.6"
 SLOT=0
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
@@ -15,13 +14,11 @@ DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
 EGIT_REPO_URI="git://github.com/cobbler/cobbler.git"
 EGIT_BRANCH="release24"
-#WEBAPP_NO_AUTO_INSTALL="yes"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha amd64 ~x86 ~x86-fbsd"
 
-#   dev-lang/python:2.7
 RDEPEND=">=www-servers/apache-2.2.24
 	dev-python/py-xmlrpc
     dev-python/cheetah
@@ -30,10 +27,11 @@ RDEPEND=">=www-servers/apache-2.2.24
     dev-python/simplejson
     dev-python/urlgrabber
     sys-boot/syslinux
+	www-apache/mod_wsgi
     net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 DEPEND="${RDEPEND}"
 
-need_apache2 rewrite proxy_http proxy mod_wsgi
+need_apache2 rewrite proxy_http proxy 
 
 pkg_setup() {
 	webapp_pkg_setup
@@ -41,7 +39,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-#	webapp_src_preinst
 	sed -i -e "/webroot/ s/cobbler//" "${S}"/setup.py
 	epatch "${FILESDIR}/${P}-setup.patch"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|${MY_SERVERCONFIGDIR}/|g" \
@@ -52,21 +49,12 @@ src_prepare() {
 			"${S}/setup.py"
 	sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}|g" \
 			"${S}/config/cobbler.conf"
-#	epatch "${FILESDIR}/${P}-make.patch"
-#	rm "${S}/setup.cfg"
 }
 
-#src_install() {
-#	elog ${MY_HTDOCSDIR} 
-#	emake DESTDIR="${D}" LIBDIR="${D}$(python_get_sitedir)" install || die "emake install failed"
-#}
-
 src_install() {
-	#dodir "${VHOST_CONFIG_DIR}"
 	webapp_src_preinst
 	distutils_src_install
 	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
-#	webapp_server_configfile apache config/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
 }
