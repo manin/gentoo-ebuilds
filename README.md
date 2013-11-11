@@ -3,6 +3,6 @@ gentoo-ebuilds
 
 ##synfig
 
-##synfig-studio
+##synfigstudio
 
 ##cobbler
