@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -41,9 +41,7 @@ src_install() {
 	emake DESTDIR="${D}" install || die "Install failed!"
 	dodoc doc/*.txt || die "Dodoc failed!"
 	insinto /usr/share/${PN}/examples
-    doins examples/*.sifz || die "Doins failed!"
-    insinto /usr/share/${PN}/examples/walk
-    doins examples/walk/*.{sifz,jpg,lst} || die "Doins failed!"
+	doins examples/*.sifz || die "Doins failed!"
+	insinto /usr/share/${PN}/examples/walk
+	doins examples/walk/*.{sifz,jpg,lst} || die "Doins failed!"
 }
-
-

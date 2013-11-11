@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI="4"
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
-inherit eutils git-2 webapp distutils depend.apache
+inherit eutils git-2 webapp distutils-r1 depend.apache
 
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
@@ -16,22 +16,23 @@ EGIT_BRANCH="release24"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~x86 ~x86-fbsd"
 
 RDEPEND=">=www-servers/apache-2.2.24
 	dev-python/py-xmlrpc
-    dev-python/cheetah
+	dev-python/cheetah
 	dev-python/pyyaml
-    dev-python/netaddr
-    dev-python/simplejson
-    dev-python/urlgrabber
-    sys-boot/syslinux
+	dev-python/netaddr
+	dev-python/simplejson
+	dev-python/urlgrabber
+	sys-boot/syslinux
 	www-apache/mod_wsgi
 	dev-python/pykickstart
-    net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
+	app-arch/createrepo
+	net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 DEPEND="${RDEPEND}"
 
-need_apache2 rewrite proxy_http proxy 
+need_apache2 rewrite proxy_http proxy
 
 pkg_setup() {
 	webapp_pkg_setup
@@ -53,7 +54,7 @@ src_prepare() {
 
 src_install() {
 	webapp_src_preinst
-	distutils_src_install
+	distutils-r1_src_install
 	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
@@ -61,9 +62,9 @@ src_install() {
 
 pkg_postinst() {
 	elog "you have to enable WSGI mod on Apache"
-	elog "Just add \"-D WSGI\" to /etc/conf.d/apache2" 
+	elog "Just add \"-D WSGI\" to /etc/conf.d/apache2"
 	elog ""
 	elog "Run \"cobbler check\""
-	distutils_pkg_postinst
+	distutils-r1_pkg_postinst
 	webapp_pkg_postinst
 }
