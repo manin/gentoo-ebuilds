@@ -7,7 +7,7 @@ EAPI="4"
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
-inherit eutils git-2 webapp distutils-r1 depend.apache
+inherit eutils git-2 webapp distutils depend.apache
 
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
@@ -57,7 +57,7 @@ src_prepare() {
 
 src_install() {
 	webapp_src_preinst
-	distutils-r1_python_install
+	distutils_src_install
 	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	webapp_src_install
@@ -68,6 +68,6 @@ pkg_postinst() {
 	elog "Just add \"-D WSGI\" to /etc/conf.d/apache2"
 	elog ""
 	elog "Run \"cobbler check\""
-#	distutils-r1_pkg_postinst
+	distutils_pkg_postinst
 	webapp_pkg_postinst
 }
