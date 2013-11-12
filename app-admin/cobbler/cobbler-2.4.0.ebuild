@@ -48,7 +48,6 @@ src_prepare() {
 	cp "${FILESDIR}/cobbler_web.conf" "${S}/config/"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|/etc/apache2/modules.d/|g" \
 			-e "s|__GENTOO_WEB_ROOT__|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/|g" \
-			-e "/cobbler_web.conf/d" \
 			-e "/initpath/d" \
 			"${S}/setup.py"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
@@ -67,6 +66,7 @@ pkg_postinst() {
 	elog ""
 	elog "Please check apache config files on /etc/apache2/modules.d/cobbler* an restart apache"
 	elog ""
+	elog "Create /tftpboot if you want to use tftp"
 	elog "Run \"cobbler check\" and \"cobbler sync\""
 	distutils_pkg_postinst
 }
