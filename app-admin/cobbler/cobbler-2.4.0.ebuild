@@ -7,7 +7,7 @@ EAPI="4"
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
-inherit eutils git-2 distutils depend.apache
+inherit eutils git-2 distutils webapp depend.apache
 
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
@@ -56,7 +56,6 @@ src_prepare() {
 
 src_install() {
 	distutils_src_install
-	dosym ${MY_SERVERCONFIGDIR}/cobbler.conf /etc/apache2/modules.d/cobbler.conf
 	doinitd "${FILESDIR}/cobblerd"
 	fowners -R apache /usr/share/cobbler/web/ /var/lib/cobbler/webui_sessions/ 
 }
