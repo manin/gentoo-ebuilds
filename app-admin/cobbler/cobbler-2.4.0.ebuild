@@ -51,7 +51,7 @@ src_prepare() {
 			-e "/initpath/d" \
 			"${S}/setup.py"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
-	find "${S}/config" -type f -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
+	find "${S}/config" -type f -exec sed -i -e "s|/var/www/cobbler|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
 }
 
 src_install() {
