@@ -36,6 +36,10 @@ DEPEND="${RDEPEND}"
 
 need_apache2 rewrite proxy_http proxy
 
+pkg_setup() {
+	python_pkg_setup
+}
+
 src_prepare() {
 	epatch "${FILESDIR}/${P}-setup.patch"
 	epatch "${FILESDIR}/${P}-action_check.patch"
@@ -47,7 +51,7 @@ src_prepare() {
 			-e "/initpath/d" \
 			"${S}/setup.py"
 	find "${S}" -name "*.py" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
-	find "${S}/config" -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
+	find "${S}/config" -type f -exec sed -i -e "s|/var/www/cobbler/|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/${PN}/|g" '{}' \;
 }
 
 src_install() {
