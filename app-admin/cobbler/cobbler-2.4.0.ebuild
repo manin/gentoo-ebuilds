@@ -37,6 +37,7 @@ DEPEND="${RDEPEND}"
 need_apache2 rewrite proxy_http proxy
 
 pkg_setup() {
+	webapp_pkg_setup
 	python_pkg_setup
 }
 
