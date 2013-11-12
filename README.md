@@ -5,7 +5,8 @@ gentoo-ebuilds
 
 ###synfigstudio
 
-###cobbler
+###cobbler:
+Under development
 
 ###ETL
 
