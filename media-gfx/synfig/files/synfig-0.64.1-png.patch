@@ -1,0 +1,7 @@
+--- src/modules/mod_png/trgt_png.h	2013-02-27 13:51:18.638547204 -0300
++++ src/modules/mod_png/trgt_png.h	2013-02-27 13:51:09.905261183 -0300
+@@ -34,6 +34,7 @@
+ #include <synfig/string.h>
+ #include <synfig/targetparam.h>
+ #include <cstdio>
++ #include <cstring> 
