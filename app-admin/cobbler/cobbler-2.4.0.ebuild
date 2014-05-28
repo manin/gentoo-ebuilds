@@ -30,7 +30,7 @@ RDEPEND=">=www-servers/apache-2.2.24
 	dev-python/pykickstart
 	app-arch/createrepo
 	dev-python/django
-	app-emulation/virtinst
+	>=app-emulation/virt-manager-1.0.1
 	net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 #	sys-apps/debmirror
 DEPEND="${RDEPEND}"
