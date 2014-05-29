@@ -12,7 +12,6 @@ inherit eutils git-2 distutils webapp depend.apache
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
 EGIT_REPO_URI="git://github.com/cobbler/cobbler.git"
-#EGIT_BRANCH="release24"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,6 +29,7 @@ RDEPEND=">=www-servers/apache-2.2.24
 	dev-python/pykickstart
 	app-arch/createrepo
 	dev-python/django
+	dev-python/python-ethtool
 	>=app-emulation/virt-manager-1.0.1
 	net-ftp/tftp-hpa" # Other could be used like 'atftpd' select with use flags.
 #	sys-apps/debmirror
