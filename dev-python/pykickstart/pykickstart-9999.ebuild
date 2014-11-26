@@ -9,9 +9,8 @@ PYTHON_COMPAT=(python{2_6,2_7})
 inherit eutils git-2 distutils-r1
 
 DESCRIPTION="python library that is used for reading and writing kickstart files"
-HOMEPAGE="https://fedoraproject.org/wiki/Pykickstart"
-EGIT_REPO_URI="git://git.fedorahosted.org/git/pykickstart.git"
-#EGIT_BRANCH="release24"
+HOMEPAGE="https://github.com/clumens/pykickstart"
+EGIT_REPO_URI="https://github.com/clumens/pykickstart.git"
 
 LICENSE="GPL-2"
 SLOT="0"
