@@ -9,15 +9,12 @@ layman -s gentoo-manin
 gentoo-ebuilds
 ==============
 
-###synfig
-
-###synfigstudio
-
-###cobbler:
+* synfig
+* synfigstudio
+* ETL
+* cobbler:
 Under development
-
-###ETL
-
-###yum-utils
-
-###pykickstart
+* virt-manager
+* debmirror
+* yum-utils
+* pykickstart
