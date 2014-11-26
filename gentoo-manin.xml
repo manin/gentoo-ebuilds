@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>                                                                                                     
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>
+    <![CDATA[ gentoo-manin ]]>
+    </name>
+    <description>
+    <![CDATA[ Gentoo-Manin provides custom ebuilds for Manin. ]]>
+    </description>
+    <homepage>http://github.com/manin/</homepage>
+    <owner>
+      <email>mariano.bayo@gmail.com</email>
+    </owner>
+    <source type="git">git://github.com/manin/gentoo-ebuilds.git</source>
+  </repo>
+</repositories>
