@@ -19,3 +19,4 @@ Under development
 * yum-utils
 * pykickstart
 * GLee
+* OALWrapper - HPLEngine1 dependency
