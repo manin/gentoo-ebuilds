@@ -46,6 +46,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-setup.patch"
 	epatch "${FILESDIR}/${P}-action_check.patch"
 	cp "${FILESDIR}/utils.py" "${S}/cobbler/"
+	# TODO this is moved to httpd by default, on gentoo is apache2. Change it.
 	cp "${FILESDIR}/cobbler_web.conf" "${S}/config/"
 	sed -i  -e "s|__GENTOO_WEB_CONF__|/etc/apache2/modules.d/|g" \
 			-e "s|__GENTOO_WEB_ROOT__|${VHOST_ROOT}/${VHOST_HTDOCS_INSECURE}/|g" \
