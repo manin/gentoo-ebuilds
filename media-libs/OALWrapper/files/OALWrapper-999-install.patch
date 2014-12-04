@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 936b46a..29a21de 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -247,6 +247,12 @@ TARGET_INCLUDE_DIRECTORIES(OALWrapper
+     ${OALWRAPPER_INCLUDE_PATHS}
+ )
+ 
++INSTALL(TARGETS OALWrapper
++    ARCHIVE DESTINATION lib
++)
++
++INSTALL(DIRECTORY include/OALWrapper DESTINATION include/)
++
+ ADD_EXECUTABLE(SimpleTest EXCLUDE_FROM_ALL tests/Simple/main.cpp)
+ TARGET_LINK_LIBRARIES(SimpleTest OALWrapper)
+ 

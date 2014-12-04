@@ -1,0 +1,12 @@
+diff --git a/sources/OAL_OggStream.cpp b/sources/OAL_OggStream.cpp
+index 0cda25c..466b2dc 100644
+--- a/sources/OAL_OggStream.cpp
++++ b/sources/OAL_OggStream.cpp
+@@ -18,6 +18,7 @@
+ #include "OALWrapper/OAL_Buffer.h"
+ #include <cstdio>
+ #include <cstdlib>
++#include <cstring>
+ 
+ using namespace std;
+ 
