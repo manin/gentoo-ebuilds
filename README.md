@@ -20,3 +20,4 @@ Under development
 * pykickstart
 * GLee
 * OALWrapper - HPLEngine1 dependency
+* omxplayer
