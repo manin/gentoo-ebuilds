@@ -3,7 +3,7 @@ INSTALL
 Drop gentoo-manin.xml in /etc/layman/overlays
 
 <code>
-layman -s gentoo-manin
+layman -a gentoo-manin
 <code>
 
 gentoo-ebuilds
