@@ -24,9 +24,12 @@ RDEPEND="${RDEPEND}
 	sys-apps/fbset"
 
 src_prepare() {
-	sed -e ' /^\(sudo\|read\)/ s/^#*/#/' -i prepare-native-raspbian.sh
-	sed -e ' /\(g++\|gcc\)/ s/-.*//' -i prepare-native-raspbian.sh
+	#sed -e ' /^\(sudo\|read\)/ s/^#*/#/' -i prepare-native-raspbian.sh
+	sed -e ' s/g++-.\../g++/' -i prepare-native-raspbian.sh
+	sed -e ' s/gcc-.\../gcc/' -i prepare-native-raspbian.sh
 	sed -e '/cp -a ffmpeg_compiled/d' -i Makefile
+	sed -e 's/check_dpkg_installed /echo /' -i prepare-native-raspbian.sh
+	> Makefile.include
 	./prepare-native-raspbian.sh
 	tc-export CXX
 	filter-ldflags -Wl,--as-needed
