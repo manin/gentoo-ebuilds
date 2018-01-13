@@ -7,7 +7,7 @@ EAPI=5
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
-inherit eutils git-2 distutils webapp depend.apache
+inherit eutils git-2 distutils-r1 webapp depend.apache
 
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"

@@ -7,7 +7,7 @@ EAPI=5
 WEBAPP_MANUAL_SLOT="yes"
 PYTHON_COMPAT=(python{2_6,2_7})
 
-inherit eutils git-2 distutils webapp depend.apache
+inherit eutils git-2 distutils-r1 webapp depend.apache
 
 DESCRIPTION="Cobbler provisioning tool"
 HOMEPAGE="http://www.cobblerd.org/"
@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://github.com/cobbler/cobbler.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~x86 ~x86-fbsd"
 
 RDEPEND=">=www-servers/apache-2.2.24
 	dev-python/py-xmlrpc
