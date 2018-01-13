@@ -9,6 +9,7 @@ layman -a gentoo-manin
 gentoo-ebuilds
 ==============
 
+* VisualStudio Code
 * synfig
 * synfigstudio
 * ETL
